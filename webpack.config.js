@@ -8,15 +8,12 @@ module.exports = {
   entry: path.join(__dirname, "/src/main.js"),
   output: {
     path: path.join(__dirname, "/dist/images/"),
-    publicPath: "/",
     filename: "bundleVue.js",
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          {
+        use: [{
             loader: MiniCssExtractPlugin.loader,
             options: {
               hmr: process.env.NODE_ENV === "development",
@@ -27,15 +24,20 @@ module.exports = {
           "sass-loader",
         ],
       },
-      { test: /\.vue$/, use: "vue-loader" },
+      {
+        test: /\.vue$/,
+        use: "vue-loader"
+      },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: { limit: 10000, name: "[name].[ext]", esModule: false },
+        use: [{
+          loader: "url-loader",
+          options: {
+            limit: 10000,
+            name: "[name].[ext]",
+            esModule: false
           },
-        ],
+        }, ],
       },
     ],
   },
@@ -50,8 +52,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "./src/index.html"),
-      filename:
-        process.env.NODE_ENV === "production" ? "../index.html" : "index.html",
+      filename: process.env.NODE_ENV === "production" ? "../index.html" : "index.html",
       minify: {
         removeComments: true,
         collapseWhitespace: true,
