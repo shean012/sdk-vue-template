@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{fileName}}
     <img class="img"
          :src="imgUrl" />
   </div>
