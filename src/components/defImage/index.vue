@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img class="img"
+    <img class="image"
          :src="imgUrl" />
   </div>
 
@@ -8,6 +8,7 @@
 
 <script>
 const DefPath = process.env.NODE_ENV === "production" ? imageDefUrl : ''
+console.log('DefPath', DefPath)
 
 export default {
   props: {
@@ -18,11 +19,12 @@ export default {
   },
   computed: {
     imgUrl() {
-      if (DefPath) return this.src.replace(/^\/src\/images/, DefPath)
-      else {
-        let idx = this.src.indexOf('images')
-        if (idx == -1) return ''
-        let fileName = this.src.substr(idx + 7)
+      let idx = this.src.indexOf('images')
+      if (idx == -1) return ''
+      let fileName = this.src.substr(idx + 7)
+      if (DefPath) {
+        return `${DefPath}${fileName}`
+      } else {
         return require(`../../images/${fileName}`)
       }
       
@@ -32,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.img {
+.image {
   width: 100%;
   display: block;
 }
