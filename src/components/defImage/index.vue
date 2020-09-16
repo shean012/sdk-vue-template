@@ -7,29 +7,27 @@
 </template>
 
 <script>
-const DefPath = process.env.NODE_ENV === "production" ? imageDefUrl : ''
-console.log('DefPath', DefPath)
+const DefPath = process.env.NODE_ENV === 'production' ? imageDefUrl : ''
 
 export default {
   props: {
     src: {
       type: String,
-      require: true
-    }
+      require: true,
+    },
   },
   computed: {
     imgUrl() {
       let idx = this.src.indexOf('images')
-      if (idx == -1) return ''
+      if (idx == -1) return this.src
       let fileName = this.src.substr(idx + 7)
       if (DefPath) {
         return `${DefPath}${fileName}`
       } else {
         return require(`../../images/${fileName}`)
       }
-      
-    }
-  }
+    },
+  },
 }
 </script>
 
