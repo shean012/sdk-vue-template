@@ -13,14 +13,15 @@ export default {
   props: {
     src: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   computed: {
     imgUrl() {
-      let idx = this.src.indexOf('images')
-      if (idx == -1) return this.src
-      let fileName = this.src.substr(idx + 7)
+      let url = this.src || ''
+      let idx = url.indexOf('images')
+      if (idx == -1) return url
+      let fileName = url.substr(idx + 7)
       if (DefPath) {
         return `${DefPath}${fileName}`
       } else {
