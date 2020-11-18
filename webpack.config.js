@@ -36,7 +36,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              limit: 10000,
+              limit: 100000, // 小于 97kb 将使用 base64
               name: "[name].[ext]",
               esModule: false,
             },
